@@ -31,7 +31,7 @@ check_lib_reversion:
   except:
     - master
     - /^release\/v/
-  image: $CI_DOCKER_REGISTRY/esp-env-v5.4:1
+  image: $CI_DOCKER_REGISTRY/esp-env-v5.5:1
   script:
     - GIT_COMMIT_ID=`git log --pretty="%s" -1 | grep -o '([0-9a-f]*)' | tail -1 | cut -c 2-8`
     - echo "GIT_COMMIT_ID is "$GIT_COMMIT_ID
