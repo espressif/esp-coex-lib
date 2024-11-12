@@ -23,8 +23,13 @@ before_script:
   - if [[ "${BOT_CUSTOMIZED_REVISION}" ]] && [[ "$BOT_CUSTOMIZED_REVISION" == *"esp-idf"* ]]; then IDF_BRANCH=$(python -c 'import os;print eval(os.environ["BOT_CUSTOMIZED_REVISION"])["esp-idf"]') ; fi
   - echo Cloning esp-idf - ${IDF_BRANCH} ...
   - git clone --single-branch -b $IDF_BRANCH --dissociate ${GITLAB_SSH_SERVER}/idf/esp-idf.git     
-  - ./esp-idf/install.sh
-  - source ./esp-idf/export.sh
+  - if [[ -z "$IDF_PATH" ]]; then
+      echo "Installing esp-idf...";
+      ./esp-idf/install.sh;
+      source ./esp-idf/export.sh;
+    else
+      echo "esp-idf is already installed at $IDF_PATH, skipping install.";
+    fi
     
 check_lib_reversion:
   stage: check
