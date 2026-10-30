@@ -33,7 +33,7 @@ cd $CI_PROJECT_DIR
 rm -rf ${board}-${CI_PIPELINE_ID}.debug
 mkdir -p ${board}-${CI_PIPELINE_ID}.debug/
 
-echo Creating ${board}-${VERSION} app binaries debug directory...
+echo Creating ${board}-${CI_PIPELINE_ID} app binaries debug directory...
 cp ${CI_PROJECT_DIR}/SSC/build/ssc.bin $board-${CI_PIPELINE_ID}.debug/ || { echo "Copy file Status: Failure"; }
 cp ${CI_PROJECT_DIR}/SSC/build/ssc.elf $board-${CI_PIPELINE_ID}.debug/ || { echo "Copy file Status: Failure"; }
 cp ${CI_PROJECT_DIR}/SSC/build/bootloader/bootloader.bin $board-${CI_PIPELINE_ID}.debug/ || { echo "Copy file Status: Failure"; }
